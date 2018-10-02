@@ -4,8 +4,8 @@ let startTranslation = () => {
   let checkNumberValue = new RegExp(/[0-9]/).test(numberValue);
 
   if(checkNumberValue) {
-    let Translator = new Translator(numberValue);
-    document.getElementById('text_result').innerHTML = Translator.textResult;
+    let TranslatorInstance = new Translator(numberValue);
+    document.getElementById('text_result').innerHTML = TranslatorInstance.textResult;
   } else {
     console.log("The number has wrong value!");
   }

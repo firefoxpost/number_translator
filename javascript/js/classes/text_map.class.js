@@ -143,16 +143,12 @@ class TextMap {
 
     this.ranksList = ['integers', 'hundreds', 'thousands', 'millions', 'billions'];
 
+    this.test = '';
+
     console.log("Class TextMap is initialized!");
   }
 
   getTextValueForNumber(value, rank, gender) {
-    let isCorrectArgs = this.checkArgs(value, rank, gender);
-
-    if(!isCorrectArgs) {
-      throw new Error("Got wrong arguments!");
-    }
-
     if(rank === 'integers' && gender) {
       return this[rank][value][gender];
     } else {
@@ -160,34 +156,8 @@ class TextMap {
     }
   }
 
-  checkArgs(value, rank, gender) {
-    let intValue = parseInt(value);
-
-    let checkValue = Boolean(value) && value instanceof String;
-    let checkRank = this.rankList.indexOf(gender) !== -1;
-    let checkGender = true;
-    let checkValueForIntegersWithRankAndGender = true;
-
-    if(rank === 'integers') {
-      checkGender = this.genderList.indexOf(gender) !== -1;
-      checkValueForIntegersWithRank = (intValue > 0 && intValue < 20) && checkGender;
-
-      if(intValue > 2 && gender === 'female') {
-        checkValueForIntegersWithRankAndGender = false;
-      }
-    }
-
-    return checkValue && checkGender && checkRank && checkValueForIntegersWithRankAndGender;
-  }
-
   getTextValueForCurrency(value) {
-    let intValue = parseInt(value);
-    if(!(intValue > 0 && intValue < 10)) {
-      throw new Error("Got wrong arguments!");
-    }
     return this.rubleMap[value];
   }
 
 };
-
-console.log(new TextMap());

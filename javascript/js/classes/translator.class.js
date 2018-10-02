@@ -1,6 +1,8 @@
 
 console.log("Translator component is connected");
 
+let TextMapInstance = new TextMap();
+
 /*
   Translator component
 */
@@ -38,14 +40,11 @@ class Translator {
   }
 
   translateValueToText() {
-    let TextMap = new TextMap();
-
     for(let i = 0; i < this.valueArr.length; i++) {
       let subNumber = this.valueArr[i];
 
     }
-
-    TextMap.textResult = 'TEST TEST';
+    TextMapInstance.test = '123123123'
   }
 
   get textResult() {
@@ -56,4 +55,3 @@ class Translator {
     this.textResult = text;
   }
 }
-console.log(new Translator('123'));
