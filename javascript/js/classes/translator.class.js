@@ -43,15 +43,11 @@ class Translator {
     for(let i = 0; i < this.valueArr.length; i++) {
       let subNumber = this.valueArr[i];
 
-    }
-    TextMapInstance.test = '123123123'
+    }    
   }
 
-  get textResult() {
+  getTextResult() {
     return this.textResult;
   }
 
-  set textResult(text) {
-    this.textResult = text;
-  }
 }

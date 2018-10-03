@@ -5,7 +5,7 @@ let startTranslation = () => {
 
   if(checkNumberValue) {
     let TranslatorInstance = new Translator(numberValue);
-    document.getElementById('text_result').innerHTML = TranslatorInstance.textResult;
+    document.getElementById('text_result').innerHTML = TranslatorInstance.getTextResult();
   } else {
     console.log("The number has wrong value!");
   }
