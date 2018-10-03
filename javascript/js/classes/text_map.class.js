@@ -141,23 +141,30 @@ class TextMap {
 
     this.genderList = ['male', 'female'];
 
-    this.ranksList = ['integers', 'hundreds', 'thousands', 'millions', 'billions'];
-
-    this.test = '';
+    this.rankList = ['integers', 'dozens', 'hundreds', 'thousands', 'millions', 'billions'];
 
     console.log("Class TextMap is initialized!");
   }
 
-  getTextValueForNumber(value, rank, gender) {
-    if(rank === 'integers' && gender) {
-      return this[rank][value][gender];
+  getTextValueForNumber(value, subRank, rank) {
+    let textSubRank = this.rankList[subRank];
+
+    if(textSubRank === 'integers') {
+      let textGender = rank === 1 && (value === '1' || value === '2') ? 'female' : 'male';
+
+      return this[textSubRank][value][textGender];
     } else {
-      return this[rank][value];
+      return this[textSubRank][value];
     }
   }
 
   getTextValueForCurrency(value) {
     return this.rubleMap[value];
+  }
+
+  getRankName(rank, value) {
+    let textRank = this.rankList[rank];
+    return this[textRank][value];
   }
 
 };
