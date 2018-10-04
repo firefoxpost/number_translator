@@ -164,6 +164,9 @@ class TextMap {
 
   getRankName(rank, value) {
     let textRank = this.rankList[rank];
+    if(value === '0') {
+      value = '9';
+    }
     return this[textRank][value];
   }
 

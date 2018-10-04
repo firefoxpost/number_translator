@@ -42,39 +42,40 @@ class Translator {
 
     for(let i = 0; i < this.valueArrLength; i++) {
       let subNumber = this.valueArr[i];
-      let subNumberInt = parseInt(subNumber);
       let subNumberLength = subNumber.length;
       let rank = this.valueArrLength - 1 - i;
-      let isTeen = false;
 
-      if (subNumberInt > 10 && subNumberInt < 20) {
+      if (this.numberIsTeen(subNumber)) {
         result += TextMapInstance.getTextValueForNumber(subNumber, 0);
         result += ' ';
       } else {
+        let subDozen = subNumber.slice(-2);
+
         for(let j = 0; j < subNumberLength; j++) {
-          if(j === 1 && subNumber[j] === '1') {
-            isTeen = true;
+          if(subNumber[j] === '0') {
+            continue;
+          }
+          if (j === 1 && this.numberIsTeen(subDozen)) {
+            result += TextMapInstance.getTextValueForNumber(subDozen, 0);
+            result += ' ';
             break;
           }
+
           let subRank = subNumberLength - 1 - j;
           result += TextMapInstance.getTextValueForNumber(subNumber[j], subRank, rank);
           result += ' ';
         }
-        if(isTeen) {
-          let teen = subNumber.slice(-2);
-          result += TextMapInstance.getTextValueForNumber(teen, 0);
-          result += ' ';
-          isTeen = false;
-        }
 
-        if(this.valueArrLength > 1 && i < this.valueArrLength - 1) {
+        // get text 'thousands', 'millions' etc.
+        if(this.valueArrLength > 1 && i < this.valueArrLength - 1 && parseInt(subNumber) !== 0) {
           result += TextMapInstance.getRankName(rank + 2, subNumber[subNumberLength-1]);
           result += ' ';
         }
       }
     }
 
-    if(this.value[this.valueLength - 2] === '1') {
+    // get text 'rubles'
+    if(this.value[this.valueLength - 1] === '0' || this.value[this.valueLength - 2] === '1') {
       result += TextMapInstance.getTextValueForCurrency("9");
     } else {
       result += TextMapInstance.getTextValueForCurrency(this.value[this.valueLength - 1]);
@@ -82,6 +83,11 @@ class Translator {
 
 
     return result;
+  }
+
+  numberIsTeen(number) {
+    let num = parseInt(number);
+    return num > 10 && num < 20;
   }
 
   getTextResult() {
