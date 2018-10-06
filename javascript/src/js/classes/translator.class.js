@@ -1,9 +1,9 @@
-
-console.log("Translator component is connected");
-
 /*
   Translator component
 */
+
+console.log("Translator component is connected");
+
 class Translator {
   constructor(value) {
     this.value = value;

@@ -1,8 +1,9 @@
-console.log("TextMap component is connected");
-
 /*
   Map of text values for translation
 */
+
+console.log("TextMap component is connected");
+
 class TextMap {
   constructor() {
     this.integers = {
